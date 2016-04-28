@@ -149,8 +149,8 @@ with open( CSV_FILE, 'r') as f:
 for channel in channel_list:
     print "Creating content view %s.." %channel[2]
 
-    cv_name = str(channel[1])
-    cv_label = str(channel[2]) 
+    cv_name = str(channel[2])
+    cv_label = str(channel[1]) 
     cvtask = create_content_view(cv_name, cv_label)
 
     print json.dumps(cvtask, indent=1)
