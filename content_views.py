@@ -25,25 +25,32 @@ except ImportError:
 
 
 # URL to the Satellite 6 server
-URL = "https://satellite.hostname.example.com"
+URL = raw_input('Enter the Satellite HostName or IP Address: ')
+
 # URL for the API for Satellite 6 server
 global KAT_API, KAT_API_URL, SAT_API, SAT_API_URL
 global org_id
-KAT_API = "%s/katello/api/v2/" % URL
-SAT_API = "%s/api/v2/" % URL
+KAT_API = "https://%s/katello/api/v2/" % URL
+SAT_API = "https://%s/api/v2/" % URL
+
 # Katello-specific API
 POST_HEADERS = {'Content-Type': 'application/json'}
+
 # Default credentials to login to Satellite 6
 #USERNAME = os.environ.get('USER')
-USERNAME = "admin"
+USERNAME = raw_input('Enter the Satellite Admin UserName: ')
+
 # Ignore SSL for now
 SSL_VERIFY = False
 
 # Organization name
-ORG_NAME = 'My Organization name'
+ORG_NAME = raw_input('Enter the Organization Name: ')
 
 # Path to CSV File
-CSV_FILE = "channels.csv"
+# Strips the file extension in case the user makes it part of the name but we add it below in case the user forgets
+CSV_NAME = raw_input('Enter CSV File Name: ').rstrip(".csv")
+# We add the file extension in case the user forgets
+CSV_FILE = CSV_NAME + '.csv'
 
 def get_json(location):
     """
